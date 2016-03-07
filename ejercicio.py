@@ -46,9 +46,9 @@ for elem in lista:
 	print "En la localidad " + elem[0] + " hay " + str(elem[1]) + " farmacias de guardia."
 
 #Muestra el nombre, el telefono y la direccion de las farmacias que esten de guardia cuyo telefono empiece por unos digitos concretos
-digitos = raw_input("Dame las 4 ultimas cifras del telefono de las farmacias para realizar la busqueda: ")
-for farm in farmaciasfecha:
-	salidacadena = False
+digitos = raw_input("\nDame las 4 ultimas cifras del telefono de las farmacias para realizar la busqueda: ")
+salidacadena = False
+for farm in farmacias:
 	if farm.find("TELEFONO").text[-4:] == digitos:
 		print "La farmacia " + farm.find("FARMACIA").text + " coincide con la busqueda."
 		salidacadena = True
@@ -71,3 +71,17 @@ for farm in farmacias:
 		salidacadena = True
 if salidacadena == False:
 	print "No se ha encontrado nada"
+
+#Introduzca  el nombre de una farmacia para mostrar su horario habitual y los dias que ha estado de guardia anteriormente
+nombre = raw_input("\nIntroduzca el nombre completo de una farmacia(Primero nombre y despues apellidos): ")
+cadena = nombre.split(" ")
+nuevonombre = cadena[1] + " " + cadena[2] + ", " + cadena[0]
+for farm in farmacias:
+	if nuevonombre == farm.find("FARMACIA").text:
+		print "La farmacia " + farm.find("FARMACIA").text + " tiene un horario de " + farm.find("DESDE").text + " de la mañana a " + farm.find("HASTA").text + " de la noche."
+		codigo = farm.find("Cod_FARMACIA").text
+		break
+
+for farm in farmaciasfecha:
+	if farm.find("Cod_FARMACIA").text == codigo:
+		print "La farmacia estuvo de guardia el dia: " + farm.find("FECHA").text
