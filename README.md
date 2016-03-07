@@ -1,2 +1,3 @@
 # ejercicio_xml
-Ejercicio python sobre un archivo xml
+Realizacion de la actividad sobre ficheros xml para la asignatura Lenguaje de Marcas de ASIR del centro IES Gonzalo Nazareno
+
